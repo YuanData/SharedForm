@@ -60,15 +60,15 @@ markup: HTML
         .then(data => {
             let tableBody = document.getElementById("userTable");
             tableBody.innerHTML = '';
-data.data.forEach(user => {
-    tableBody.innerHTML += `
-        <tr>
-            <td>${user.id}</td>
-            <td><a href="${user.avatar}" target="_blank">${user.first_name}</a></td>
-            <td>${user.last_name}</td>
-        </tr>
-    `;
-});
+        data.data.forEach(user => {
+            tableBody.innerHTML += `
+                <tr>
+                    <td>${user.id}</td>
+                    <td><a href="${user.avatar}" target="_blank">${user.first_name}</a></td>
+                    <td>${user.last_name}</td>
+                </tr>
+            `;
+        });
 
             document.getElementById("pageNumber").value = currentPage;
         });
