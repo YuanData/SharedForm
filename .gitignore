@@ -1,0 +1,4 @@
+.DS_Store
+.hugo_build.lock
+resources/_gen/assets/scss/css/style.scss_*.content
+resources/_gen/assets/scss/css/style.scss_*.json
