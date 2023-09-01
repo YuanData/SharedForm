@@ -21,8 +21,8 @@ markup: HTML
         <thead>
             <tr>
                 <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Shared GPT</th>
+                <th>Create at</th>
             </tr>
         </thead>
         <tbody id="userTable"></tbody>
@@ -52,20 +52,20 @@ markup: HTML
 <!-- Custom JS -->
 <script>
     let currentPage = 1;
-    const totalPages = 2;  // This value can be dynamically set if the API provides the total pages information
+    const totalPages = 10;  // This value can be dynamically set if the API provides the total pages information
 
-    function loadUsers(page) {
-        fetch(`https://reqres.in/api/users?page=${page}`)
+    function loadUsers(page) {        
+        fetch(`http://localhost:8080/sharedlinks?page_id=${page}&page_size=10`)
         .then(response => response.json())
         .then(data => {
             let tableBody = document.getElementById("userTable");
             tableBody.innerHTML = '';
-        data.data.forEach(user => {
+        data.forEach(resp => {
             tableBody.innerHTML += `
                 <tr>
-                    <td>${user.id}</td>
-                    <td><a href="${user.avatar}" target="_blank">${user.first_name}</a></td>
-                    <td>${user.last_name}</td>
+                    <td>${resp.id}</td>
+                    <td><a href="https://chat.openai.com/share/${resp.urlhash}" target="_blank">${resp.name}</a></td>
+                    <td>${resp.created_at.substring(0, 19)}</td>
                 </tr>
             `;
         });
