@@ -1,5 +1,5 @@
 ---
-title: "Shared Form"
+title: "ChatGPT Shared Chat"
 date: 2023-08-23T07:00:00+08:00
 lastmod: 2023-08-31T07:00:00+08:00
 draft: false
@@ -10,7 +10,7 @@ markup: HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users List</title>
+    <title>Shared Chat</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -21,7 +21,7 @@ markup: HTML
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Shared GPT</th>
+                <th>Shared Chat</th>
                 <th>Create at</th>
             </tr>
         </thead>
