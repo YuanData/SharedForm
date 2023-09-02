@@ -22,5 +22,5 @@ since = 2023
 
 [params.home.profile]
 title = "Web Symphony"
-subtitle = "本站採用前後端分離架構，前端透過Hugo框架管理網站內容，後端使用Gin框架處理CRUD資料API。分離的架構使前端呈現更為流暢，後端數據處理更可靠高效。整體提升網站效能、可維護性，並便於擴展與迭代。"
+subtitle = "採用前後端分離架構，前端透過Hugo框架管理網站內容，後端使用Gin框架處理CRUD資料API。分離的架構使前端呈現更為流暢，後端數據處理更可靠高效。整體提升網站效能、可維護性，並便於擴展與迭代。"
 typeit = false
