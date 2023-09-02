@@ -1,6 +1,6 @@
 baseURL = 'https://yuandata.github.io/'
 languageCode = 'en-us'
-title = 'Shared Site'
+title = ''
 theme = 'LoveIt'
 
 [author]

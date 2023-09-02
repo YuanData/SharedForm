@@ -54,25 +54,39 @@ markup: HTML
     let currentPage = 1;
     const totalPages = 10;  // This value can be dynamically set if the API provides the total pages information
 
-    function loadUsers(page) {        
-        fetch(`http://localhost:8080/sharedlinks?page_id=${page}&page_size=10`)
+    function loadUsers(page) {
+        fetchData(`https://59dd-39-15-49-108.ngrok-free.app/sharedlinks?page_id=${page}&page_size=10`, page)
+        .catch(error => {
+            console.error('Error:', error);
+            if (error.message === 'Failed to fetch') {
+                return fetchData(`https://raw.githubusercontent.com/YuanData/urlhash/main/sharedlinks/page_id_${page}.json`, page);
+            } else {
+                throw error;
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function fetchData(url, page) {
+        return fetch(url)
         .then(response => response.json())
         .then(data => {
             let tableBody = document.getElementById("userTable");
             tableBody.innerHTML = '';
-        data.forEach(resp => {
-            tableBody.innerHTML += `
-                <tr>
-                    <td>${resp.id}</td>
-                    <td><a href="https://chat.openai.com/share/${resp.urlhash}" target="_blank">${resp.name}</a></td>
-                    <td>${resp.created_at.substring(0, 19)}</td>
-                </tr>
-            `;
-        });
+            data.forEach(resp => {
+                tableBody.innerHTML += `
+                    <tr>
+                        <td>${resp.id}</td>
+                        <td><a href="https://chat.openai.com/share/${resp.urlhash}" target="_blank">${resp.name}</a></td>
+                        <td>${resp.created_at.substring(0, 19)}</td>
+                    </tr>
+                `;
+            });
 
-            document.getElementById("pageNumber").value = currentPage;
+            document.getElementById("pageNumber").value = page;
         });
     }
+
 
     function nextPage() {
         if(currentPage < totalPages) {
