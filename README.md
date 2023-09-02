@@ -1,5 +1,5 @@
 # 專案介紹
-本專案主要使用Go語言撰寫的Web應用程式，目的是為了管理Chat GPT導出的分享連結。Chat GPT是由OpenAI以GPT架構開發的語言模型對話系統。本Web應用程式可以讓使用者可以方便的管理和分享這些Chat GPT生成的連結。
+本專案主要使用Go語言撰寫的Web應用程式，目的是為了管理Chat GPT導出的分享連結。Chat GPT是由OpenAI以GPT架構開發的語言模型對話系統。本Web應用程式讓使用者可以方便的管理和分享這些Chat GPT生成的連結。
 
 ## 主要特色
 1. **前後端分離架構**: 前端使用Hugo框架來管理網站的內容，而後端則使用Gin框架來處理CRUD(建立、讀取、更新、刪除)資料API。這種分離的架構讓前端的呈現變得更流暢，而後端的資料處理也更可靠和高效。整體而言，這樣的設計可以提升網站的效能、可維護性，並且也更容易進行擴展和迭代。
@@ -21,3 +21,50 @@
 ## DevOps使用技術
 1. [Docker](https://www.docker.com/): 利用容器技術，可以方便的進行應用程式的擴展和部署，這裡使用docker-compose up命令來完成整個架構的部署。
 2. [GitHub Actions](https://github.com/features/actions): 這是一個CI/CD(持續整合/持續部署)工具，可以自動執行單元測試，並且自動部署到GitHub Pages site。
+
+## 架構圖
+```mermaid
+graph LR
+
+  %% Backend Technologies
+  B1[fa:fa-database sqlc]
+  B2[fa:fa-database postgres]
+  B3[fa:fa-exchange go migrate]
+  B4[fa:fa-cogs go mockgen]
+  B5[fa:fa-check go test]
+
+  %% Frontend Technologies
+  F1[fa:fa-code HUGO]
+  F2[fa:fa-refresh AJAX]
+
+  %% DevOps Technologies
+  D1[fa:fa-ship Docker]
+  D2[fa:fa-file GitHub Actions]
+
+  %% Client-Server Relationship
+  C[fa:fa-user Client]
+  S[fa:fa-server Gin API Server]
+
+  %% Backend Relations
+  S --- B1
+  S --- B2
+  S --- B3
+  S --- B4
+  S --- B5
+
+  %% Frontend Relations
+  C --- F1
+  F1 --- F2
+  F2 --- S
+
+  %% DevOps Relations
+  S --- D1
+  D1 --- D2
+
+  %% Styling
+  class C,S blue
+  class B1,B2,B3,B4,B5,B6 green
+  class F1,F2 red
+  class D1,D2 yellow
+
+```
