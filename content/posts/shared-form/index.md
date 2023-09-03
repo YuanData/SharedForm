@@ -55,7 +55,7 @@ markup: HTML
     const totalPages = 10;  // This value can be dynamically set if the API provides the total pages information
 
     function loadUsers(page) {
-        fetchData(`https://59dd-39-15-49-108.ngrok-free.app/sharedlinks?page_id=${page}&page_size=10`, page)
+        fetchData(`http://localhost:8080/sharedlinks?page_id=${page}&page_size=10`, page)
         .catch(error => {
             console.error('Error:', error);
             if (error.message === 'Failed to fetch') {
