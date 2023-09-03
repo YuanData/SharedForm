@@ -1,10 +1,11 @@
-baseURL = 'https://yuandata.github.io/'
+baseURL = '/'
 languageCode = 'en-us'
 title = ''
 theme = 'LoveIt'
 
 [author]
 name = "Alan"
+link = "https://yuandata.github.io/resume/"
 [params]
 defaultTheme = "light"
 
