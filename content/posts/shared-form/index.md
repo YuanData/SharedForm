@@ -56,22 +56,26 @@ markup: HTML
     const totalPages = 10;  // This value can be dynamically set if the API provides the total pages information
 
     function loadUsers(page) {
-        fetchData(`http://localhost:8080/sharedlinks?page_id=${page}&page_size=10`, page)
-        .catch(error => {
-            console.error('Error:', error);
-            if (error.message === 'Failed to fetch') {
-                return fetchData(`https://raw.githubusercontent.com/YuanData/urlhash/main/sharedlinks/page_id_${page}.json`, page);
-            } else {
-                throw error;
-            }
-        })
-        .catch(error => console.error('Error:', error));
+        const urls = [
+            `https://raw.githubusercontent.com/YuanData/urlhash/main/sharedlinks/page_id_${page}.json`,
+            `http://localhost:8080/sharedlinks?page_id=${page}&page_size=10`
+        ];
+        Promise.allSettled(urls.map(url => fetch(url).then(response => response.json())))
+            .then(results => {
+                const [githubData, localData] = results;
+                // 如果 Github 數據成功加載，先渲染 Github 數據
+                if (githubData.status === 'fulfilled') {
+                    renderTable(githubData.value, page);
+                }
+                // 如果本地數據成功加載，渲染本地數據
+                if (localData.status === 'fulfilled') {
+                    renderTable(localData.value, page);
+                }
+            })
+            .catch(error => console.error('Error:', error));
     }
 
-    function fetchData(url, page) {
-        return fetch(url)
-        .then(response => response.json())
-        .then(data => {
+    function renderTable(data, page) {
             let tableBody = document.getElementById("userTable");
             tableBody.innerHTML = '';
             data.forEach(resp => {
@@ -85,7 +89,6 @@ markup: HTML
             });
 
             document.getElementById("pageNumber").value = page;
-        });
     }
 
 
