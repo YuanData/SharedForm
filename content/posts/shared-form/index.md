@@ -62,12 +62,12 @@ markup: HTML
         ];
         Promise.allSettled(urls.map(url => fetch(url).then(response => response.json())))
             .then(results => {
-                const [githubData, localData] = results;
-                // 如果 Github 數據成功加載，先渲染 Github 數據
-                if (githubData.status === 'fulfilled') {
-                    renderTable(githubData.value, page);
+                const [staticJson, localData] = results;
+                // 如果 static json 數據成功加載，先渲染數據
+                if (staticJson.status === 'fulfilled') {
+                    renderTable(staticJson.value, page);
                 }
-                // 如果本地數據成功加載，渲染本地數據
+                // 如果本地數據成功加載，則渲染本地數據
                 if (localData.status === 'fulfilled') {
                     renderTable(localData.value, page);
                 }
