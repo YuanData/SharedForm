@@ -8,6 +8,7 @@ name = "Alan"
 link = "https://yuandata.github.io/resume/"
 [params]
 defaultTheme = "light"
+title = ""
 
 [params.header.title]
 name = "Web Symphony"
