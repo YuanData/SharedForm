@@ -26,45 +26,34 @@
 ```mermaid
 graph LR
 
-  %% Backend Technologies
   B1[fa:fa-database sqlc]
   B2[fa:fa-database postgres]
   B3[fa:fa-exchange go migrate]
   B4[fa:fa-cogs go mockgen]
   B5[fa:fa-check go test]
 
-  %% Frontend Technologies
   F1[fa:fa-code HUGO]
   F2[fa:fa-refresh AJAX]
 
-  %% DevOps Technologies
   D1[fa:fa-ship Docker]
   D2[fa:fa-file GitHub Actions]
 
-  %% Client-Server Relationship
   C[fa:fa-user Client]
   S[fa:fa-server Gin API Server]
 
-  %% Backend Relations
   S --- B1
-  S --- B2
+  B1 --- B2
   S --- B3
+  B3 --- B2
   S --- B4
-  S --- B5
+  B4 --- B5  
 
-  %% Frontend Relations
   C --- F1
-  F1 --- F2
+  F1 --- S
+  C --- F2
   F2 --- S
 
-  %% DevOps Relations
   S --- D1
   D1 --- D2
-
-  %% Styling
-  class C,S blue
-  class B1,B2,B3,B4,B5,B6 green
-  class F1,F2 red
-  class D1,D2 yellow
 
 ```

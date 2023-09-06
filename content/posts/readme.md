@@ -55,13 +55,16 @@ graph LR
   S[fa:fa-server Gin API Server]
 
   S --- B1
-  S --- B2
+  B1 --- B2
   S --- B3
+  B3 --- B2
   S --- B4
-  S --- B5
+  B4 --- B5
+  
 
   C --- F1
-  F1 --- F2
+  F1 --- S
+  C --- F2
   F2 --- S
 
   S --- D1
