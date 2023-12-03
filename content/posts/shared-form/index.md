@@ -53,10 +53,11 @@ markup: HTML
 <!-- Custom JS -->
 <script>
     let currentPage = 1;
-    const totalPages = 10;  // Dynamic total pages
+    const totalPages = 11;  // Dynamic total pages
 
-    let dataSource = "staticJson"; // Global flag variable for data source
+    let dataSource = "appScript"; // Global flag variable for data source
     const fetchFunc = {
+        "appScript": fetchAppScript,
         "staticJson": fetchStaticJson,
         "localhost": fetchLocalhost,
     };
@@ -68,6 +69,13 @@ markup: HTML
         } else {
             console.error('Unknown data source');
         }
+    }
+
+    function fetchAppScript(page) {
+        const url = `https://script.google.com/macros/s/AKfycbyEQZZOBebNYnLBZ2ABPF23SnSmmvwVnTudUxdNXnQbSDXSglK62FN0BmXkPyLZ3jI_ww/exec?page_id=${page}&order=desc`;
+        fetch(url).then(response => response.json())
+            .then(data => renderTable(data, page))
+            .catch(error => console.error('Error:', error));
     }
 
     function fetchStaticJson(page) {
